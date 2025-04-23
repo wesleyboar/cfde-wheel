@@ -5,7 +5,7 @@ This package adds the CFDE Navigation Wheel to your site:
 
 ## Installation
 ```
-npm install cfde-wheel
+npm install git+ssh://github.com/MaayanLab/cfde-wheel
 ```
 
 ## Usage
@@ -17,3 +17,5 @@ export const MyComponent = () => {
 	return <CFDEWheel/>
 }
 ```
+
+Note for Next.js: This is a client component so you need to add `'use client'` in the file.
