@@ -1,0 +1,26 @@
+{
+  "name": "cfde-wheel",
+  "version": "1.0.0",
+  "description": "CFDE Navigation Wheel",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.tsx",
+    "lint": "tsc"
+  },
+  "keywords": [
+    "CFDE"
+  ],
+  "author": "Erol Evangelista",
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.0.2",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3"
+  }
+}
