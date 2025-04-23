@@ -3981,7 +3981,7 @@ function InteractiveNavComponent() {
             position: "absolute",
             transform: `translate(${x}px, ${y}px)`
           },
-          children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Link, { href: dcc.homepage, target: "_blank", rel: "noopener noreferrer", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: dcc.icon || "", alt: dcc.short_label || "", width: 70, height: 70 }) })
+          children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Link, { href: dcc.homepage.startsWith("https://commonfund.") ? `https://info.cfde.cloud/dcc/${dcc.short_label}` : dcc.homepage, target: "_blank", rel: "noopener noreferrer", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: dcc.icon || "", alt: dcc.short_label || "", width: 70, height: 70 }) })
         }
       ) }, dcc.short_label || "");
     }),

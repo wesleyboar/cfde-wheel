@@ -238,7 +238,7 @@ export default function InteractiveNavComponent() {
 									transform: `translate(${x}px, ${y}px)`,
 								}}
 							>
-								<Link href={dcc.homepage} target="_blank" rel="noopener noreferrer">
+								<Link href={dcc.homepage.startsWith('https://commonfund.') ? `https://info.cfde.cloud/dcc/${dcc.short_label}`:dcc.homepage} target="_blank" rel="noopener noreferrer">
 									<img src={dcc.icon || ''} alt={dcc.short_label || ''} width={70} height={70}/>
 								</Link>
 							</Button>
