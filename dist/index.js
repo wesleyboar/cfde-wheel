@@ -3772,7 +3772,7 @@ var dccs = [
   {
     id: void 0,
     short_label: "ComPASS",
-    homepage: "https://commonfund.nih.gov/compass",
+    homepage: " nih.gov/compass",
     icon: "../img/interactive/compass.svg",
     description: "Community-led research on structural drivers of health"
   },
@@ -3800,7 +3800,7 @@ var dccs = [
   {
     id: void 0,
     short_label: "NPH",
-    homepage: "https://commonfund.nih.gov/nutritionforprecisionhealth",
+    homepage: " nih.gov/nutritionforprecisionhealth",
     icon: "../img/interactive/nph.png",
     description: "Predictive algorithms to advance nutrition research"
   },
@@ -3842,7 +3842,7 @@ var dccs = [
   {
     id: void 0,
     short_label: "SMaHT",
-    homepage: "https://commonfund.nih.gov/somatic-mosaicism-across-human-tissues-smaht",
+    homepage: " nih.gov/somatic-mosaicism-across-human-tissues-smaht",
     icon: "../img/interactive/smath.png",
     description: "Mapping somatic mutations' health implications"
   },
@@ -3981,7 +3981,7 @@ function InteractiveNavComponent() {
             position: "absolute",
             transform: `translate(${x}px, ${y}px)`
           },
-          children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Link, { href: dcc.homepage.startsWith("https://commonfund.") ? `https://info.cfde.cloud/dcc/${dcc.short_label}` : dcc.homepage, target: "_blank", rel: "noopener noreferrer", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: dcc.icon || "", alt: dcc.short_label || "", width: 70, height: 70 }) })
+          children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Link, { href: dcc.homepage.startsWith(" ") ? dcc.homepage : `https://info.cfde.cloud/dcc/${dcc.short_label}`, target: "_blank", rel: "noopener noreferrer", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: dcc.icon || "", alt: dcc.short_label || "", width: 70, height: 70 }) })
         }
       ) }, dcc.short_label || "");
     }),
