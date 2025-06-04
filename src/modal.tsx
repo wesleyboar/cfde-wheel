@@ -20,7 +20,7 @@ export default function InteractiveNavModal({children}: {children: React.ReactNo
 		backgroundColor: '#FFF',
 		padding: 0
 	}}>
-		<Image src="/img/interactive/cfde_unified_icon.svg" alt={'nav-but'} width={120} height={120}/>
+		<Image src="https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/cfde_unified_icon.svg" alt={'nav-but'} width={120} height={120}/>
 	  </Fab>
       <Modal
         open={open}
