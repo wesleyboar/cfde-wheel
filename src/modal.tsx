@@ -3,7 +3,6 @@ import {useState} from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fab from '@mui/material/Fab';
-import Image from 'next/image';
 
 export default function InteractiveNavModal({children}: {children: React.ReactNode, fab?: boolean}) {
   const [open, setOpen] = useState(false);
@@ -20,7 +19,7 @@ export default function InteractiveNavModal({children}: {children: React.ReactNo
 		backgroundColor: '#FFF',
 		padding: 0
 	}}>
-		<Image src="https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/cfde_unified_icon.svg" alt={'nav-but'} width={120} height={120}/>
+		<img src="https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/cfde_unified_icon.svg" alt={'nav-but'} width={120} height={120}/>
 	  </Fab>
       <Modal
         open={open}
