@@ -222,36 +222,36 @@ var centers = [
       top: { md: 310, xs: 320 }
     },
     text_position: {
-      top: { md: 80, xs: 70 },
-      left: { md: "50%", xs: "65%" }
+      top: { md: 80, xs: 55 },
+      left: { md: "50%", xs: "63%" }
     },
     image_position: {
-      top: 100,
-      left: "15%"
+      top: 90,
+      left: "20%"
     },
     image_position_small: {
       top: 70,
-      left: "25%"
+      left: "30%"
     }
   },
   {
     label: "knowledge",
     endpoint: "https://info.cfde.cloud/centers/KC",
     position: {
-      left: { md: 60, xs: 40 },
-      top: { md: 450, xs: 423 }
+      left: { md: 58, xs: 40 },
+      top: { md: 449, xs: 420 }
     },
     text_position: {
-      top: { md: 120, xs: 100 },
+      top: { md: 125, xs: 100 },
       left: "10%"
     },
     image_position: {
-      top: 50,
-      left: "17%"
+      top: 53,
+      left: "13%"
     },
     image_position_small: {
       top: 45,
-      left: "17%"
+      left: "15%"
     }
   },
   {
@@ -263,16 +263,16 @@ var centers = [
       top: { md: 467, xs: 434 }
     },
     text_position: {
-      top: { md: 105, xs: 90 },
-      left: "10%"
+      top: { md: 105, xs: 85 },
+      left: "15%"
     },
     image_position: {
       top: 35,
-      left: "35%"
+      left: "45%"
     },
     image_position_small: {
-      top: 33,
-      left: "35%"
+      top: 30,
+      left: "42%"
     }
   },
   {
@@ -284,12 +284,12 @@ var centers = [
       top: { md: 338, xs: 337 }
     },
     text_position: {
-      top: { md: 50, xs: 50 },
-      left: { md: "25%", xs: "10%" }
+      top: { md: 50, xs: 30 },
+      left: { md: "25%", xs: "12%" }
     },
     image_position: {
-      top: 75,
-      left: "60%"
+      top: 65,
+      left: "55%"
     },
     image_position_small: {
       top: 55,
@@ -305,15 +305,15 @@ var centers = [
       top: { md: 240, xs: 265 }
     },
     text_position: {
-      top: { md: 60, xs: 39 },
+      top: { md: 60, xs: 30 },
       left: "23%"
     },
     image_position: {
-      top: 110,
+      top: 100,
       left: "47%"
     },
     image_position_small: {
-      top: 65,
+      top: 55,
       left: "47%"
     }
   }
@@ -341,7 +341,26 @@ function InteractiveNavComponent() {
             position: "absolute",
             transform: { md: `translate(${x}px, ${y}px)`, xs: `translate(${x_small}px, ${y_small}px)` }
           },
-          children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Link, { href: dcc.homepage, target: "_blank", rel: "noopener noreferrer", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: dcc.icon || "", alt: dcc.short_label || "", width: 70, height: 70 }) })
+          children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Link, { href: dcc.homepage, target: "_blank", rel: "noopener noreferrer", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+            import_material.Box,
+            {
+              sx: {
+                position: "relative",
+                width: { md: 60, xs: 40 },
+                overflow: "hidden",
+                height: { md: 60, xs: 40 }
+              },
+              children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: dcc.icon || "", alt: dcc.short_label || "", style: {
+                top: 0,
+                left: 0,
+                position: "absolute",
+                maxWidth: "100%",
+                height: "100%",
+                objectFit: "contain",
+                color: "transparent"
+              } })
+            }
+          ) })
         }
       ) }, dcc.short_label || "");
     }),
@@ -352,13 +371,23 @@ function InteractiveNavComponent() {
         height: { md: 190, xs: 150 }
       }, center.position || {}), children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Container, { sx: {
         position: "relative",
-        width: { md: 190, xs: 150 },
-        height: { md: 190, xs: 150 }
+        width: { md: 170, xs: 125 },
+        height: { md: 170, xs: 125 }
       }, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("a", { href: center.endpoint, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: `https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/${center.label}.png`, alt: center.label, loading: "lazy", decoding: "async", sizes: "100vw", style: { position: "absolute", height: "100%", width: "100%", inset: "0px", objectFit: "contain", color: "transparent", transform: `rotate(${center.rotate || "0deg"})` } }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: `https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/${center.label}.png`, alt: center.label, loading: "lazy", decoding: "async", sizes: "100vw", style: {
+          position: "absolute",
+          height: "100%",
+          width: "100%",
+          maxWidth: "100%",
+          inset: "0px",
+          objectFit: "contain",
+          color: "transparent",
+          display: "block",
+          transform: `rotate(${center.rotate || "0deg"})`
+        } }),
         /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Typography, { sx: __spreadValues({ color: "#FFF", position: "absolute", textTransform: "uppercase", fontSize: { md: 16, xs: 11.5 } }, center.text_position || {}), children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("b", { children: center.label }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Container, { sx: { display: { md: "block", xs: "none" } }, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: `https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/${center.label} 1.png`, alt: center.label, width: 40, height: 40, style: __spreadValues({ position: "absolute", zIndex: 100 }, center.image_position || {}) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Container, { sx: { display: { md: "none", xs: "block" } }, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: `https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/${center.label} 1.png`, alt: center.label, width: 30, height: 30, style: __spreadValues({ position: "absolute", zIndex: 100 }, center.image_position_small || {}) }) })
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Container, { sx: { display: { md: "block", xs: "none" } }, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: `https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/${center.label} 1.png`, alt: center.label, style: __spreadValues({ position: "absolute", width: 40, height: 40, zIndex: 100 }, center.image_position || {}) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Container, { sx: { display: { md: "none", xs: "block" } }, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: `https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/${center.label} 1.png`, alt: center.label, style: __spreadValues({ position: "absolute", zIndex: 100, width: 30, height: 30 }, center.image_position_small || {}) }) })
       ] }) }) }, center.label);
     }),
     /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
@@ -376,7 +405,27 @@ function InteractiveNavComponent() {
           padding: 1,
           zIndex: 100
         },
-        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Link, { href: "https://info.cfde.cloud", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/CFDE_logo.png", alt: "cfde_logo", width: 150, height: 150, style: { zIndex: 100 } }) })
+        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Link, { href: "https://info.cfde.cloud", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+          import_material.Box,
+          {
+            sx: {
+              position: "relative",
+              width: { md: 100, xs: 80 },
+              overflow: "hidden",
+              height: { md: 100, xs: 80 },
+              zIndex: 100
+            },
+            children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/CFDE_logo.png", alt: "CFDE_Logo", style: {
+              top: 0,
+              left: 0,
+              position: "absolute",
+              maxWidth: "100%",
+              height: "100%",
+              objectFit: "contain",
+              color: "transparent"
+            } })
+          }
+        ) })
       }
     ),
     /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
