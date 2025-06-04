@@ -22,13 +22,6 @@ const dccs = [
 	  description: 'Cellular spatial atlas of the human body'
 	},
 	{
-	  id: undefined,
-	  short_label: 'ComPASS',
-	  homepage: 'https://commonfund.nih.gov/compass',
-	  icon: '/img/interactive/compass.svg',
-	  description: 'Community-led research on structural drivers of health'
-	},
-	{
 	  id: 'd6bb00c3-7224-5001-b9c5-9838622fba40',
 	  short_label: '4DN',
 	  homepage: 'https://info.cfde.cloud/dccs/4DN',
@@ -85,6 +78,13 @@ const dccs = [
 	  description: 'Metabolomics'
 	},
 	{
+	  id: undefined,
+	  short_label: 'SCGE',
+	  homepage: 'https://commonfund.nih.gov/editing',
+	  icon: '/img/interactive/scge.png',
+	  description: 'Reducing the burden of diseases caused by genetic changes'
+	},
+	{
 	  id: '2399794e-74c6-5735-a039-0782cdeeb1e2',
 	  short_label: 'SPARC',
 	  homepage: 'https://info.cfde.cloud/dccs/SPARC',
@@ -129,93 +129,115 @@ const dccs = [
   ]
 
   const centers = [
-	{
-		label: "cloud",
-		endpoint: "https://info.cfde.cloud/centers/CWIC",
-		rotate: "-72deg",
-		position: {
-			left: 85,
-			top: 310
+		{
+			label: "cloud",
+			endpoint: "https://info.cfde.cloud/centers/CWIC",
+			rotate: "-72deg",
+			position: {
+				left: {md: 85, xs: 60},
+				top: {md: 310, xs: 320}
+			},
+			text_position: {
+				top: {md: 80, xs: 70},
+				left: {md: "50%", xs: "65%"},
+
+			},
+			image_position: {
+				top: 100,
+				left: "15%"
+			},
+			image_position_small: {
+				top: 70,
+				left: "25%"
+			}
 		},
-		text_position: {
-			top: 80,
-			left: "50%"
+		{
+			label: "knowledge",
+			endpoint: "https://info.cfde.cloud/centers/KC",
+			position: {
+				left: {md: 60, xs: 40},
+				top: {md: 450, xs: 423}
+			},
+			text_position: {
+				top: {md: 120, xs: 100},
+				left: "10%"
+			},
+			image_position: {
+				top: 50,
+				left: "17%"
+			},
+			image_position_small: {
+				top: 45,
+				left: "17%"
+			}
 		},
-		image_position: {
-			top: 100,
-			left: "15%"
-		}
-	},
-	{
-		label: "knowledge",
-		endpoint: "https://info.cfde.cloud/centers/KC",
-		position: {
-			left: 60,
-			top: 450
+		{
+			label: "training",
+			endpoint: "https://info.cfde.cloud/centers/TC",
+			rotate: "72deg",
+			position: {
+				left: {md: -83, xs: -65},
+				top: {md: 467, xs: 434}
+			},
+			text_position: {
+				top: {md: 105, xs: 90},
+				left: "10%"
+			},
+			image_position: {
+				top: 35,
+				left: "35%"
+			},
+			image_position_small: {
+				top: 33,
+				left: "35%"
+			}
 		},
-		text_position: {
-			top: 120,
-			left: "10%"
+		{
+			label: "data",
+			endpoint: "https://info.cfde.cloud/centers/DRC",
+			rotate: "144deg",
+			position: {
+				left: {md: -143, xs: -110},
+				top: {md: 338, xs: 337}
+			},
+			text_position: {
+				top: {md: 50, xs: 50},
+				left: {md: "25%", xs: "10%"}
+			},
+			image_position: {
+				top: 75,
+				left: "60%"
+			},
+			image_position_small: {
+				top: 55,
+				left: "45%"
+			}
 		},
-		image_position: {
-			top: 50,
-			left: "17%"
-		}
-	},
-	{
-		label: "training",
-		endpoint: "https://info.cfde.cloud/centers/TC",
-		rotate: "72deg",
-		position: {
-			left: -83,
-			top: 467
+		{
+			label: "coordination",
+			endpoint: "https://info.cfde.cloud/centers/ICC",
+			rotate: '216deg',
+			position: {
+				left: {md: -39, xs: -31},
+				top: {md: 240, xs: 265}
+			},
+			text_position: {
+				top: {md: 60, xs: 39},
+				left: "23%"
+			},
+			image_position: {
+				top: 110,
+				left: "47%"
+			},
+			image_position_small: {
+				top: 65,
+				left: "47%"
+			}
 		},
-		text_position: {
-			top: 105,
-			left: "10%"
-		},
-		image_position: {
-			top: 35,
-			left: "35%"
-		}
-	},
-	{
-		label: "data",
-		endpoint: "https://info.cfde.cloud/centers/DRC",
-		rotate: "144deg",
-		position: {
-			left: -143,
-			top: 338
-		},
-		text_position: {
-			top: 50,
-			left: "25%"
-		},
-		image_position: {
-			top: 75,
-			left: "60%"
-		}
-	},
-	{
-		label: "coordination",
-		endpoint: "https://info.cfde.cloud/centers/ICC",
-		rotate: '216deg',
-		position: {
-			left: -39,
-			top: 240
-		},
-		text_position: {
-			top: 60,
-			left: "23%"
-		},
-		image_position: {
-			top: 110,
-			left: "47%"
-		}
-	},
-]
+	]
 
 const radius = 280
+const radius_small = 195
 const pie_chunk = 2*Math.PI/(dccs.length)
 
 export default function InteractiveNavComponent() {
@@ -225,6 +247,9 @@ export default function InteractiveNavComponent() {
 					const angle = pie_chunk * i
 					const x = radius * Math.cos(angle)
 					const y = radius * Math.sin(angle) + 400
+					const x_small = radius_small * Math.cos(angle)
+					const y_small = radius_small * Math.sin(angle) + 400
+					
 					return (
 						<Tooltip title={<Typography>{dcc.description}</Typography>} key={dcc.short_label || ''} >
 							<Button variant="contained" 
@@ -232,10 +257,10 @@ export default function InteractiveNavComponent() {
 								sx={{
 									background: "#fff", 
 									borderRadius: 1000, 
-									width: 90, 
-									height: 90,
+									width: {md: 90, xs: 60}, 
+									height:  {md: 90, xs: 60},
 									position: "absolute",
-									transform: `translate(${x}px, ${y}px)`,
+									transform: {md: `translate(${x}px, ${y}px)`, xs: `translate(${x_small}px, ${y_small}px)`},
 								}}
 							>
 								<Link href={dcc.homepage} target="_blank" rel="noopener noreferrer">
@@ -249,23 +274,29 @@ export default function InteractiveNavComponent() {
 					return (
 						<Button key={center.label} sx={{
 							position: "absolute",
-							width: 190,
-							height: 190,
+							width: {md: 190, xs: 150},
+							height: {md: 190, xs: 150},
 							// transform: `translate(${x}px, ${y}px) rotate(${center.rotate || '0deg'})`,
 							...(center.position || {})
 						}}>
 							<Container sx={{
 								position: "relative",
-								width: 160,
-								height: 190,
+								width: {md: 190, xs: 150},
+								height: {md: 190, xs: 150},
 							}}>
 								<a href={center.endpoint}>
 								
 									<img src={`/img/interactive/${center.label}.png`} alt={center.label} loading="lazy" decoding="async"  sizes="100vw" style={{position: "absolute", height: "100%", width: "100%", inset: "0px", objectFit: "contain", color: "transparent", transform: `rotate(${center.rotate || '0deg'})`}}/>
-									<Typography sx={{color: "#FFF", position: "absolute", textTransform: "uppercase", ...(center.text_position || {})}}>
+									<Typography sx={{color: "#FFF", position: "absolute", textTransform: "uppercase", fontSize: {md: 16, xs: 11.5}, ...(center.text_position || {})}}>
 										<b>{center.label}</b>
 									</Typography>
-									<img src={`/img/interactive/${center.label} 1.png`} alt={center.label} width={40} height={40} style={{position: "absolute", zIndex: 100, ...(center.image_position || {})}}/>
+									<Container sx={{display: {md: 'block', xs: 'none'}}}>
+										<img src={`/img/interactive/${center.label} 1.png`} alt={center.label} width={40} height={40} style={{position: "absolute", zIndex: 100, ...(center.image_position || {})}}/>
+									</Container>
+									<Container sx={{display: {md: 'none', xs: 'block'}}}>
+										<img src={`/img/interactive/${center.label} 1.png`} alt={center.label} width={30} height={30} style={{position: "absolute", zIndex: 100, ...(center.image_position_small || {})}}/>
+									</Container>
+									
 								</a>
 							</Container>
 						</Button>
@@ -275,16 +306,16 @@ export default function InteractiveNavComponent() {
 					sx={{
 						background: "#fff", 
 						borderRadius: 1000, 
-						width: 120, 
-						height: 120,
+						width: {md: 120, xs: 110}, 
+						height: {md: 120, xs: 110},
 						position: "absolute",
-						top: 395,
-						left: 5,
+						top: {md: 395, xs: 365},
+						left: {md: 5, xs: -5},
 						padding: 1,
 						zIndex: 100,
 					}}
 				>
-					<Link href="/info">
+					<Link href="https://info.cfde.cloud">
 						<img src={'../img/interactive/CFDE_logo.png'} alt={'cfde_logo'} width={150} height={150} style={{zIndex: 100}}/>
 					</Link>
 				</Button>
@@ -292,11 +323,11 @@ export default function InteractiveNavComponent() {
 					sx={{
 						background: "#000", 
 						borderRadius: "50%", 
-						width: 230, 
-						height: 230,
+						width: {md: 230, xs: 200}, 
+						height: {md: 230, xs: 200},
 						position: "absolute",
-						top: 340,
-						left: -50,
+						top: {md: 340, xs: 320},
+						left: {md: -50, xs: -50},
 						opacity: "0.5"
 					}}
 				></Container>
