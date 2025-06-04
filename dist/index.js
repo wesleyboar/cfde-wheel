@@ -3752,28 +3752,28 @@ var dccs = [
     id: "65af85ae-82d5-5b81-bc66-6bddaa6420ce",
     short_label: "Kids First",
     homepage: "https://info.cfde.cloud/dccs/Kids First",
-    icon: "/img/Kids First.png",
+    icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/Kids First.png",
     description: "Data, tools, and resources empowering pediatric research"
   },
   {
     id: "e332dadd-8084-5fbc-be41-29d75775aab3",
     short_label: "A2CPS",
     homepage: "https://info.cfde.cloud/dccs/A2CPS",
-    icon: "/img/A2CPS.png",
+    icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/A2CPS.png",
     description: "Understanding the complex biological processes underlying chronic pain"
   },
   {
     id: "803ad44d-e7a2-550a-95c6-57855bf06be8",
     short_label: "HuBMAP",
     homepage: "https://info.cfde.cloud/dccs/HuBMAP",
-    icon: "/img/HuBMAP.png",
+    icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/HuBMAP.png",
     description: "Cellular spatial atlas of the human body"
   },
   {
     id: "d6bb00c3-7224-5001-b9c5-9838622fba40",
     short_label: "4DN",
     homepage: "https://info.cfde.cloud/dccs/4DN",
-    icon: "/img/4DN.png",
+    icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/4DN.png",
     description: "Nuclear organization in space and time"
   },
   {
@@ -3787,14 +3787,14 @@ var dccs = [
     id: "a1289ebb-0306-59a1-b0fc-e4d03a4790d7",
     short_label: "IDG",
     homepage: "https://info.cfde.cloud/dccs/IDG",
-    icon: "/img/IDG.png",
+    icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/IDG.png",
     description: "Illuminating GPCRs, kinases, ion channels, & other drug targets"
   },
   {
     id: void 0,
     short_label: "NPH",
     homepage: "https://commonfund.nih.gov/nutritionforprecisionhealth",
-    icon: "/img/interactive/nph.png",
+    icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/interactive/nph.png",
     description: "Predictive algorithms to advance nutrition research"
   },
   {
@@ -3808,70 +3808,70 @@ var dccs = [
     id: "75b3be39-a021-5d80-b7e2-2a7938a1e11a",
     short_label: "Bridge2AI",
     homepage: "https://info.cfde.cloud/dccs/Bridge2AI",
-    icon: "/img/Bridge2AI.png",
+    icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/Bridge2AI.png",
     description: "Biomedical AI \u2194 people, data & ethics"
   },
   {
     id: "a9aeab22-4fbc-5329-aef6-21110f463c23",
     short_label: "MoTrPAC",
     homepage: "https://info.cfde.cloud/dccs/MoTrPAC",
-    icon: "/img/MoTrPAC.png",
+    icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/MoTrPAC.png",
     description: "The molecular map of exercise"
   },
   {
     id: "089d8d63-3364-526f-9706-80d62d0ec88c",
     short_label: "Metabolomics",
     homepage: "https://info.cfde.cloud/dccs/Metabolomics",
-    icon: "/img/Metabolomics.png",
+    icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/Metabolomics.png",
     description: "Metabolomics"
   },
   {
     id: void 0,
     short_label: "SCGE",
     homepage: "https://commonfund.nih.gov/editing",
-    icon: "/img/interactive/scge.png",
+    icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/interactive/scge.png",
     description: "Reducing the burden of diseases caused by genetic changes"
   },
   {
     id: "2399794e-74c6-5735-a039-0782cdeeb1e2",
     short_label: "SPARC",
     homepage: "https://info.cfde.cloud/dccs/SPARC",
-    icon: "/img/SPARC.svg",
+    icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/SPARC.svg",
     description: "Bridging the body and brain"
   },
   {
     id: void 0,
     short_label: "SMaHT",
     homepage: "https://commonfund.nih.gov/somatic-mosaicism-across-human-tissues-smaht",
-    icon: "/img/interactive/smath.png",
+    icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/interactive/smath.png",
     description: "Mapping somatic mutations' health implications"
   },
   {
     id: "cbfd44b8-684d-56b9-bfd4-45c0e259f896",
     short_label: "HMP",
     homepage: "https://info.cfde.cloud/dccs/HMP",
-    icon: "/img/HMP.png",
+    icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/HMP.png",
     description: "Human microbiome in health and disease"
   },
   {
     id: "b3028db2-209c-5862-8f4d-33c5b312332e",
     short_label: "GTEx",
     homepage: "https://info.cfde.cloud/dccs/GTEx",
-    icon: "/img/GTEx.png",
+    icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/GTEx.png",
     description: "Gene expression and regulation across human tissues"
   },
   {
     id: "dd66e8a5-0e05-5a43-a0ca-18cc3698bb36",
     short_label: "SenNet",
     homepage: "https://info.cfde.cloud/dccs/SenNet",
-    icon: "/img/SenNet.png",
+    icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/SenNet.png",
     description: "Mapping senescent cells"
   },
   {
     id: "f65babf7-2875-5725-9635-210d654533f1",
     short_label: "ExRNA",
     homepage: "https://info.cfde.cloud/dccs/ExRNA",
-    icon: "/img/exRNA.png",
+    icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/exRNA.png",
     description: "Extracellular RNA communication"
   }
 ];
@@ -4018,10 +4018,10 @@ function InteractiveNavComponent() {
         width: { md: 190, xs: 150 },
         height: { md: 190, xs: 150 }
       }, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("a", { href: center.endpoint, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: `/img/interactive/${center.label}.png`, alt: center.label, loading: "lazy", decoding: "async", sizes: "100vw", style: { position: "absolute", height: "100%", width: "100%", inset: "0px", objectFit: "contain", color: "transparent", transform: `rotate(${center.rotate || "0deg"})` } }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: `https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/${center.label}.png`, alt: center.label, loading: "lazy", decoding: "async", sizes: "100vw", style: { position: "absolute", height: "100%", width: "100%", inset: "0px", objectFit: "contain", color: "transparent", transform: `rotate(${center.rotate || "0deg"})` } }),
         /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Typography, { sx: __spreadValues({ color: "#FFF", position: "absolute", textTransform: "uppercase", fontSize: { md: 16, xs: 11.5 } }, center.text_position || {}), children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("b", { children: center.label }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Container, { sx: { display: { md: "block", xs: "none" } }, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: `/img/interactive/${center.label} 1.png`, alt: center.label, width: 40, height: 40, style: __spreadValues({ position: "absolute", zIndex: 100 }, center.image_position || {}) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Container, { sx: { display: { md: "none", xs: "block" } }, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: `/img/interactive/${center.label} 1.png`, alt: center.label, width: 30, height: 30, style: __spreadValues({ position: "absolute", zIndex: 100 }, center.image_position_small || {}) }) })
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Container, { sx: { display: { md: "block", xs: "none" } }, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: `https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/${center.label} 1.png`, alt: center.label, width: 40, height: 40, style: __spreadValues({ position: "absolute", zIndex: 100 }, center.image_position || {}) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Container, { sx: { display: { md: "none", xs: "block" } }, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: `https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/${center.label} 1.png`, alt: center.label, width: 30, height: 30, style: __spreadValues({ position: "absolute", zIndex: 100 }, center.image_position_small || {}) }) })
       ] }) }) }, center.label);
     }),
     /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
@@ -4039,7 +4039,7 @@ function InteractiveNavComponent() {
           padding: 1,
           zIndex: 100
         },
-        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Link, { href: "https://info.cfde.cloud", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: "../img/interactive/CFDE_logo.png", alt: "cfde_logo", width: 150, height: 150, style: { zIndex: 100 } }) })
+        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Link, { href: "https://info.cfde.cloud", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/interactive/CFDE_logo.png", alt: "cfde_logo", width: 150, height: 150, style: { zIndex: 100 } }) })
       }
     ),
     /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
