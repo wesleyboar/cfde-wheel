@@ -179,7 +179,7 @@ var dccs = [
   {
     id: void 0,
     short_label: "SMaHT",
-    homepage: "https://commonfund.nih.gov/somatic-mosaicism-across-human-tissues-smaht",
+    homepage: "https://info.cfde.cloud/dcc/SMaHT",
     icon: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/smath.png",
     description: "Mapping somatic mutations' health implications"
   },
