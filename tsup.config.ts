@@ -14,7 +14,8 @@ export default defineConfig([
     platform: 'browser',
     outDir: 'dist',
     outExtension: () => ({ js: '.browser.js' }),
-    external: ['react', 'react-dom', '@mui/material', '@emotion/react', '@emotion/styled'],
+    external: ['react', 'react-dom'],
+    noExternal: [/@mui\/.*/, /@emotion\/.*/],
     define: {
       'process.env.NODE_ENV': '"production"',
     },
