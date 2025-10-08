@@ -10,18 +10,13 @@ export default defineConfig([
   },
   {
     entry: ['src/index.tsx'],
-    format: ['iife'],
-    globalName: 'CFDEWheel',
+    format: ['esm'],
+    platform: 'browser',
     outDir: 'dist',
     outExtension: () => ({ js: '.browser.js' }),
-    esbuildOptions(options) {
-      options.external = ['react', 'react-dom', 'react/jsx-runtime', '@mui/material', '@emotion/react', '@emotion/styled']
-      options.banner = {
-        js: `var module = { exports: {} };`
-      }
-    },
+    external: ['react', 'react-dom', '@mui/material', '@emotion/react', '@emotion/styled'],
     define: {
-      'process.env.NODE_ENV': '"production"'
+      'process.env.NODE_ENV': '"production"',
     },
   },
 ]);
