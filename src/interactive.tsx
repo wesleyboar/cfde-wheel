@@ -1,5 +1,7 @@
+'use client'
+import { useState, useEffect } from "react";
 import { Container, Button, Typography, Tooltip, Link, Box } from "@mui/material";
-const dccs = [
+const dcc_list = [
 	{
 	  id: '65af85ae-82d5-5b81-bc66-6bddaa6420ce',
 	  short_label: 'Kids First',
@@ -238,12 +240,28 @@ const dccs = [
 
 const radius = 280
 const radius_small = 195
-const pie_chunk = 2*Math.PI/(dccs.length)
-
+interface dccType {
+	id: string
+	short_label: string
+	homepage: string
+	icon: string
+	description: string 
+}
 export default function InteractiveNavComponent() {
+	const [dccs, setDccs] = useState<Array<dccType>>([])
+	useEffect(()=>{
+		const get_dccs = async () => {
+			const res = await fetch("http://localhost:3000/chat/dccInfo")
+			const {dccs} = await res.json()
+			setDccs(dccs)
+		}
+		get_dccs()
+	}, [])
+	const pie_chunk = 2*Math.PI/(dccs.length)
+	console.log(dccs)
 	return (
 		<Container sx={{position: "relative", width: 200}}>
-				{dccs.map((dcc, i)=>{
+				{dccs.map((dcc:dccType, i:number)=>{
 					const angle = pie_chunk * i
 					const x = radius * Math.cos(angle)
 					const y = radius * Math.sin(angle) + 400

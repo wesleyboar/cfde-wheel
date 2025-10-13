@@ -3,6 +3,7 @@ import InteractiveNavComponent from "./interactive";
 
 
 const CFDEWheel = () => {
+	
 	return (
 		<InteractiveNavModal>
 			<InteractiveNavComponent/>
