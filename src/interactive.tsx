@@ -251,14 +251,13 @@ export default function InteractiveNavComponent() {
 	const [dccs, setDccs] = useState<Array<dccType>>([])
 	useEffect(()=>{
 		const get_dccs = async () => {
-			const res = await fetch("http://localhost:3000/chat/dccInfo")
+			const res = await fetch("https://cfde.cloud/chat/dccInfo")
 			const {dccs} = await res.json()
 			setDccs(dccs)
 		}
 		get_dccs()
 	}, [])
 	const pie_chunk = 2*Math.PI/(dccs.length)
-	console.log(dccs)
 	return (
 		<Container sx={{position: "relative", width: 200}}>
 				{dccs.map((dcc:dccType, i:number)=>{
