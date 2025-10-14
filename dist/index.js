@@ -196,10 +196,10 @@ var centers = [
   }
 ];
 var radius = 280;
-var radius_small = 160;
+var radius_small = 200;
 function InteractiveNavComponent() {
   const pie_chunk = 2 * Math.PI / dccs_default.length;
-  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_material.Container, { sx: { position: "relative", width: 200 }, children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_material.Container, { sx: { position: "relative", width: "fit-content", height: "fit-content" }, children: [
     dccs_default.map((dcc, i) => {
       const angle = pie_chunk * i;
       const x = radius * Math.cos(angle);
@@ -207,14 +207,13 @@ function InteractiveNavComponent() {
       const x_small = radius_small * Math.cos(angle);
       const y_small = radius_small * Math.sin(angle) + 400;
       return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Tooltip, { title: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_material.Typography, { children: dcc.description }), children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
-        import_material.Button,
+        import_material.IconButton,
         {
-          variant: "contained",
           sx: {
             background: "#fff",
             borderRadius: 1e3,
-            width: { md: 90, xs: 40 },
-            height: { md: 90, xs: 40 },
+            width: { md: 90, xs: 60 },
+            height: { md: 90, xs: 60 },
             position: "absolute",
             transform: { md: `translate(${x}px, ${y}px)`, xs: `translate(${x_small}px, ${y_small}px)` }
           },
@@ -223,9 +222,9 @@ function InteractiveNavComponent() {
             {
               sx: {
                 position: "relative",
-                width: { md: 60, xs: 30 },
+                width: { md: 60, xs: 40 },
                 overflow: "hidden",
-                height: { md: 60, xs: 30 }
+                height: { md: 60, xs: 40 }
               },
               children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: dcc.icon || "", alt: dcc.short_label || "", style: {
                 top: 0,
@@ -327,6 +326,6 @@ function InteractiveNavComponent() {
 var import_material2 = require("@mui/material");
 var import_jsx_runtime3 = require("react/jsx-runtime");
 var CFDEWheel = () => {
-  return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(InteractiveNavModal, { children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_material2.Box, { sx: { position: "relative" }, children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(InteractiveNavComponent, {}) }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(InteractiveNavModal, { children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_material2.Container, { sx: { height: "100vh", width: "100vw" }, children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(InteractiveNavComponent, {}) }) });
 };
 var index_default = CFDEWheel;
