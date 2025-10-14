@@ -1,12 +1,13 @@
 import InteractiveNavModal from "./modal";
 import InteractiveNavComponent from "./interactive";
-
+import { Container } from "@mui/material";
 
 const CFDEWheel = () => {
-	
 	return (
 		<InteractiveNavModal>
-			<InteractiveNavComponent/>
+			<Container sx={{height: "100vh", width: "100vw"}}>
+				<InteractiveNavComponent/>
+			</Container>
 		</InteractiveNavModal>
 	)
 }
