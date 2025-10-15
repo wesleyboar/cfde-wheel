@@ -1,13 +1,8 @@
-"use strict";
 "use client";
-var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __defProps = Object.defineProperties;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
-var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __propIsEnum = Object.prototype.propertyIsEnumerable;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
@@ -35,27 +30,6 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var __async = (__this, __arguments, generator) => {
   return new Promise((resolve, reject) => {
     var fulfilled = (value) => {
@@ -77,17 +51,10 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 
-// src/index.tsx
-var index_exports = {};
-__export(index_exports, {
-  default: () => index_default
-});
-module.exports = __toCommonJS(index_exports);
-
 // src/interactive.tsx
-var import_material = require("@mui/material");
-var import_react = require("react");
-var import_jsx_runtime = require("react/jsx-runtime");
+import { Container, Button, IconButton, Typography, Tooltip, Link, Box } from "@mui/material";
+import { useEffect, useRef, useState } from "react";
+import { jsx, jsxs } from "react/jsx-runtime";
 var centers = (radius) => [
   {
     label: "coordination",
@@ -176,8 +143,8 @@ var centers = (radius) => [
 ];
 var default_radius = 280;
 function useViewportDimensions() {
-  const [dimensions, setDimensions] = (0, import_react.useState)(() => ({ height: window.innerHeight, width: window.innerWidth }));
-  (0, import_react.useEffect)(() => {
+  const [dimensions, setDimensions] = useState(() => ({ height: window.innerHeight, width: window.innerWidth }));
+  useEffect(() => {
     const ctx = {};
     const listener = () => {
       if (ctx.resizeTimeout) clearTimeout(ctx.resizeTimeout);
@@ -197,19 +164,19 @@ function InteractiveNavComponent({ dccs, handleClose }) {
   const pie_chunk = 2 * Math.PI / dccs.length;
   const dimensions = useViewportDimensions();
   const radius = Math.max(Math.min(dimensions.width / 2, dimensions.height / 2, default_radius) - 30, 100);
-  const divRef = (0, import_react.useRef)(null);
-  (0, import_react.useEffect)(() => {
+  const divRef = useRef(null);
+  useEffect(() => {
     if (divRef.current) {
       divRef.current.addEventListener("click", handleClose);
     }
   }, [divRef.current]);
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_material.Container, { sx: { position: "relative", height: "100vh" }, ref: divRef, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_material.Container, { sx: { position: "absolute", margin: 0, top: "50%", left: "50%", transform: "translate(-50%, -50%)" }, children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_material.Container, { sx: { position: "relative", display: "flex", justifyContent: "center", marginTop: 10, height: radius * 2.9 }, children: [
+  return /* @__PURE__ */ jsx(Container, { sx: { position: "relative", height: "100vh" }, ref: divRef, children: /* @__PURE__ */ jsx(Container, { sx: { position: "absolute", margin: 0, top: "50%", left: "50%", transform: "translate(-50%, -50%)" }, children: /* @__PURE__ */ jsxs(Container, { sx: { position: "relative", display: "flex", justifyContent: "center", marginTop: 10, height: radius * 2.9 }, children: [
     dccs.map((dcc, i) => {
       const angle = pie_chunk * i;
       const x = radius * Math.cos(angle);
       const y = radius * Math.sin(angle) + radius;
-      return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_material.Tooltip, { title: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_material.Typography, { children: dcc.description }), children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-        import_material.IconButton,
+      return /* @__PURE__ */ jsx(Tooltip, { title: /* @__PURE__ */ jsx(Typography, { children: dcc.description }), children: /* @__PURE__ */ jsx(
+        IconButton,
         {
           sx: {
             background: "#fff",
@@ -219,8 +186,8 @@ function InteractiveNavComponent({ dccs, handleClose }) {
             position: "absolute",
             transform: `translate(${x}px, ${y}px)`
           },
-          children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_material.Link, { href: dcc.homepage, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-            import_material.Box,
+          children: /* @__PURE__ */ jsx(Link, { href: dcc.homepage, children: /* @__PURE__ */ jsx(
+            Box,
             {
               sx: {
                 position: "relative",
@@ -228,7 +195,7 @@ function InteractiveNavComponent({ dccs, handleClose }) {
                 overflow: "hidden",
                 height: radius / 5
               },
-              children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: dcc.icon || "", alt: dcc.short_label || "", style: {
+              children: /* @__PURE__ */ jsx("img", { src: dcc.icon || "", alt: dcc.short_label || "", style: {
                 top: 0,
                 left: 0,
                 position: "absolute",
@@ -243,20 +210,20 @@ function InteractiveNavComponent({ dccs, handleClose }) {
       ) }, dcc.label || "");
     }),
     centers(radius).map((center, i) => {
-      return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-        import_material.Button,
+      return /* @__PURE__ */ jsx(
+        Button,
         {
           sx: __spreadValues({
             position: "absolute",
             width: radius / 1.47,
             height: radius / 1.47
           }, center.position || {}),
-          children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_material.Container, { sx: {
+          children: /* @__PURE__ */ jsx(Container, { sx: {
             position: "relative",
             width: radius / 1.65,
             height: radius / 1.65
-          }, children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", { href: center.endpoint, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: `https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/${center.label}.png`, alt: center.label, loading: "lazy", decoding: "async", sizes: "100vw", style: {
+          }, children: /* @__PURE__ */ jsxs("a", { href: center.endpoint, children: [
+            /* @__PURE__ */ jsx("img", { src: `https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/${center.label}.png`, alt: center.label, loading: "lazy", decoding: "async", sizes: "100vw", style: {
               position: "absolute",
               height: "100%",
               width: "100%",
@@ -267,15 +234,15 @@ function InteractiveNavComponent({ dccs, handleClose }) {
               display: "block",
               transform: `rotate(${center.rotate || "0deg"})`
             } }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_material.Typography, { sx: __spreadValues({ color: "#FFF", position: "absolute", textTransform: "uppercase", fontSize: radius / 17.5 }, center.text_position || {}), children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: center.label }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_material.Container, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: `https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/${center.label} 1.png`, alt: center.label, style: __spreadValues({ position: "absolute", width: radius / 7, height: radius / 7, zIndex: 100 }, center.image_position || {}) }) })
+            /* @__PURE__ */ jsx(Typography, { sx: __spreadValues({ color: "#FFF", position: "absolute", textTransform: "uppercase", fontSize: radius / 17.5 }, center.text_position || {}), children: /* @__PURE__ */ jsx("b", { children: center.label }) }),
+            /* @__PURE__ */ jsx(Container, { children: /* @__PURE__ */ jsx("img", { src: `https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/${center.label} 1.png`, alt: center.label, style: __spreadValues({ position: "absolute", width: radius / 7, height: radius / 7, zIndex: 100 }, center.image_position || {}) }) })
           ] }) })
         },
         center.label
       );
     }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-      import_material.Button,
+    /* @__PURE__ */ jsx(
+      Button,
       {
         variant: "contained",
         sx: {
@@ -288,8 +255,8 @@ function InteractiveNavComponent({ dccs, handleClose }) {
           padding: 1,
           zIndex: 100
         },
-        children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_material.Link, { href: "https://info.cfde.cloud", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-          import_material.Box,
+        children: /* @__PURE__ */ jsx(Link, { href: "https://info.cfde.cloud", children: /* @__PURE__ */ jsx(
+          Box,
           {
             sx: {
               position: "relative",
@@ -298,7 +265,7 @@ function InteractiveNavComponent({ dccs, handleClose }) {
               height: radius / 3,
               zIndex: 1e3
             },
-            children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/CFDE_logo.png", alt: "CFDE_Logo", style: {
+            children: /* @__PURE__ */ jsx("img", { src: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/CFDE_logo.png", alt: "CFDE_Logo", style: {
               top: 0,
               left: 0,
               position: "absolute",
@@ -311,8 +278,8 @@ function InteractiveNavComponent({ dccs, handleClose }) {
         ) })
       }
     ),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-      import_material.Container,
+    /* @__PURE__ */ jsx(
+      Container,
       {
         sx: {
           background: "#000",
@@ -329,14 +296,14 @@ function InteractiveNavComponent({ dccs, handleClose }) {
 }
 
 // src/index.tsx
-var import_react2 = require("react");
-var import_Modal = __toESM(require("@mui/material/Modal"));
-var import_Fab = __toESM(require("@mui/material/Fab"));
-var import_Button = __toESM(require("@mui/material/Button"));
-var import_jsx_runtime2 = require("react/jsx-runtime");
+import { useEffect as useEffect2, useState as useState2 } from "react";
+import Modal from "@mui/material/Modal";
+import Fab from "@mui/material/Fab";
+import Button2 from "@mui/material/Button";
+import { Fragment, jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
 var FabComponent = (_a) => {
   var _b = _a, { children } = _b, props = __objRest(_b, ["children"]);
-  return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_Fab.default, __spreadProps(__spreadValues({}, props), { sx: {
+  return /* @__PURE__ */ jsx2(Fab, __spreadProps(__spreadValues({}, props), { sx: {
     position: "fixed",
     bottom: 50,
     right: 50,
@@ -347,30 +314,33 @@ var FabComponent = (_a) => {
   }, children }));
 };
 var CFDEWheel = ({ button }) => {
-  const [dccs, setDccs] = (0, import_react2.useState)([]);
-  const [open, setOpen] = (0, import_react2.useState)(false);
+  const [dccs, setDccs] = useState2([]);
+  const [open, setOpen] = useState2(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const Wrapper = button ? import_Button.default : FabComponent;
-  (0, import_react2.useEffect)(() => {
+  const Wrapper = button ? Button2 : FabComponent;
+  useEffect2(() => {
     const fetch_dccs = () => __async(null, null, function* () {
       const r = yield fetch("https://raw.githubusercontent.com/MaayanLab/cfde-wheel/refs/heads/main/src/dccs.json");
       setDccs(yield r.json());
     });
     fetch_dccs();
   }, []);
-  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Wrapper, { onClick: handleOpen, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/cfde_unified_icon.svg", alt: "nav-but", width: 120, height: 120 }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
-      import_Modal.default,
+  return /* @__PURE__ */ jsxs2("div", { children: [
+    /* @__PURE__ */ jsx2(Wrapper, { onClick: handleOpen, children: /* @__PURE__ */ jsx2("img", { src: "https://cfde-drc.s3.us-east-2.amazonaws.com/assets/img/cfde_unified_icon.svg", alt: "nav-but", width: 120, height: 120 }) }),
+    /* @__PURE__ */ jsx2(
+      Modal,
       {
         open,
         onClose: handleClose,
         "aria-labelledby": "modal-modal-title",
         "aria-describedby": "modal-modal-description",
-        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_jsx_runtime2.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(InteractiveNavComponent, { dccs, handleClose }) })
+        children: /* @__PURE__ */ jsx2(Fragment, { children: /* @__PURE__ */ jsx2(InteractiveNavComponent, { dccs, handleClose }) })
       }
     )
   ] });
 };
 var index_default = CFDEWheel;
+export {
+  index_default as default
+};

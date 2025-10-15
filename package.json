@@ -1,11 +1,12 @@
 {
   "name": "cfde-wheel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CFDE Navigation Wheel",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.tsx",
+    "build:dccs": "node script/update_dccs.ts",
+    "build": "node script/update_dccs.ts && tsup src/index.tsx --dts --format esm,cjs",
     "lint": "tsc",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -17,7 +18,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/material": "^7.0.2",
+    "@mui/material": "^5.17.1",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "react": "^19.1.0",
