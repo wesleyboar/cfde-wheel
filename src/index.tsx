@@ -1,3 +1,4 @@
+"use client"
 import InteractiveNavComponent from "./interactive";
 import { useEffect, useRef, useState } from "react";
 import Modal from '@mui/material/Modal';
