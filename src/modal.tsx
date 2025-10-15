@@ -5,7 +5,7 @@ import Modal from '@mui/material/Modal';
 import Fab from '@mui/material/Fab';
 
 export default function InteractiveNavModal({children}: {children: React.ReactNode, fab?: boolean}) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
@@ -27,9 +27,9 @@ export default function InteractiveNavModal({children}: {children: React.ReactNo
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box>
+        <>
           {children}
-        </Box>
+        </>
       </Modal>
     </div>
   );
