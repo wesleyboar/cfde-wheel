@@ -1,7 +1,6 @@
 import { Container, Button, IconButton, Typography, Tooltip, Link, Box } from "@mui/material";
-import dccs from './dccs.json'
 import { useEffect, useState } from "react";
-
+ 
   const centers = (radius:number) => ([
 	{
 			label: "coordination",
@@ -92,13 +91,7 @@ import { useEffect, useState } from "react";
 
 const default_radius = 280
 // const radius_small = 200
-interface dccType {
-	id: string
-	short_label: string
-	homepage: string
-	icon: string
-	description?: string 
-}
+
 
 function useViewportDimensions() {
   const [dimensions, setDimensions] = useState(() => ({ height: window.innerHeight, width: window.innerWidth }))
@@ -119,7 +112,7 @@ function useViewportDimensions() {
   return dimensions
 }
 
-export default function InteractiveNavComponent() {
+export default function InteractiveNavComponent({dccs}: {dccs: Array<any>}) {
 	const pie_chunk = 2*Math.PI/(dccs.length)
 	const dimensions = useViewportDimensions()
 	const radius = Math.max(Math.min(dimensions.width/2, dimensions.height/2, default_radius) - 30, 100)
