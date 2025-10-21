@@ -6,7 +6,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build:dccs": "node script/update_dccs.ts",
-    "build": "node script/update_dccs.ts && tsup src/index.tsx --dts --format esm,cjs",
+    "build": "node script/update_dccs.ts && tsup src/index.tsx",
     "lint": "tsc",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
