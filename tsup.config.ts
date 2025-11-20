@@ -12,22 +12,16 @@ export default defineConfig([
   },
   {
     entry: ['src/index.tsx'],
-    format: ['esm'],
+    format: ['iife'],
     platform: 'browser',
     outDir: 'dist',
     outExtension: () => ({ js: '.browser.js' }),
-    external: [
-      'react',
-      'react-dom',
-      'react/jsx-runtime',
-      'react-dom/client',
-      '@emotion/react',
-      '@emotion/styled',
-      '@mui/material'
-    ],
+    globalName: 'CFDEWheel',
+    external: ['react', 'react-dom'],
     define: {
       'process.env.NODE_ENV': '"production"',
     },
-    minify: true
+    minify: true,
+    sourcemap: false,
   },
 ]);
