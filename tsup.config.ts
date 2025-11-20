@@ -16,8 +16,15 @@ export default defineConfig([
     platform: 'browser',
     outDir: 'dist',
     outExtension: () => ({ js: '.browser.js' }),
-    external: ['react', 'react-dom', 'react/jsx-runtime', 'react-dom/client'],
-    noExternal: [/.*/],  // to bundle EVERYTHING except what's in `external`
+    external: [
+      'react',
+      'react-dom',
+      'react/jsx-runtime',
+      'react-dom/client',
+      '@emotion/react',
+      '@emotion/styled',
+      '@mui/material'
+    ],
     define: {
       'process.env.NODE_ENV': '"production"',
     },
