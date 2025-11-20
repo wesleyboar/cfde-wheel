@@ -1,139 +1,93 @@
-# CFDE Wheel Browser Build Troubleshooting Summary
+# CFDE Wheel Browser Build - Final Summary
 
 ## Goal
-Get `index.browser.js` working in browser via importmap for Django CMS site.
+Create a browser-compatible build of cfde-wheel that works with Django CMS via script tags (no npm install).
 
-## Original Error
+## The Core Problem
+- **cfde-wheel** depends on React, MUI, and Emotion
+- MUI and Emotion have internal imports of React
+- When bundling for browser, need ALL code to use the same React instance from `window.React`
+- If different React instances exist, React hooks fail with "Cannot read properties of null (reading 'useState')"
+
+## Constraints
+- Maintainer wants dependencies externalized (not bundled)
+- Cannot add new build tool dependencies to cfde-wheel repo
+- Must use existing tsup/esbuild tooling
+
+## What We Tried
+
+### 1. ESM Build + Import Maps ❌
+**Approach:** Externalize everything, provide via importmap
+```typescript
+external: ['react', 'react-dom', '@emotion/react', '@emotion/styled', '@mui/material']
 ```
-Uncaught Error: Dynamic require of "react" is not supported
-    at index.browser.js:1:791
+**Result:** Failed with `Could not resolve "@mui/utils/formatMuiErrorMessage"`
+**Why:** MUI has deep internal package dependencies (`@mui/utils`, `@mui/system`, etc.) that would require dozens of importmap entries
+
+### 2. Bundle MUI/Emotion, Externalize React ❌
+**Approach:** Bundle dependencies but keep React external
+```typescript
+external: ['react', 'react-dom'],
+noExternal: [/.*/]
 ```
+**Result:** "Cannot read properties of null (reading 'useState')"
+**Why:** Bundled MUI/Emotion code included its own React copy, creating multiple React instances
+
+### 3. IIFE with Alias to window.React ❌
+**Approach:** Use esbuild's alias to replace React imports with global references
+```typescript
+format: ['iife'],
+external: ['react', 'react-dom'],
+esbuildOptions(options) {
+  options.alias = {
+    'react': '__REACT_GLOBAL__',
+    'react-dom': '__REACTDOM_GLOBAL__'
+  };
+}
+```
+**Result:** Build error: `Could not resolve "__REACT_GLOBAL__/jsx-runtime"`
+**Why:** esbuild's `alias` treats replacements as file paths, not runtime variables. Can't handle subpath imports like `react/jsx-runtime`
 
 ## Root Cause
-tsup was externalizing ALL dependencies (React, MUI, Emotion) by default because they're listed in `dependencies`. Only React was provided via importmap, causing import resolution failures for MUI/Emotion.
+**tsup/esbuild cannot:**
+- Bundle MUI/Emotion (which contain React imports)
+- While making those internal React imports use `window.React` instead of bundling React
 
-## Solution Implemented
+This requires transform plugins that esbuild doesn't support.
 
-### Modified `tsup.config.ts`
-Added `noExternal: [/.*/]` to force bundling of everything except explicitly external packages:
+## The Solution: Wrapper Repository
 
-```typescript
-{
-  entry: ['src/index.tsx'],
-  format: ['esm'],
-  platform: 'browser',
-  outDir: 'dist',
-  outExtension: () => ({ js: '.browser.js' }),
-  external: ['react', 'react-dom', 'react/jsx-runtime', 'react-dom/client'],
-  noExternal: [/.*/],  // Bundle EVERYTHING except what's in external
-  define: {
-    'process.env.NODE_ENV': '"production"',
-  },
-  minify: true
-}
+Create a separate `cfde-wheel-browser` repository that:
+
+1. **Imports** `cfde-wheel` as a dependency
+2. **Uses Rollup** (with proper plugins) to build UMD bundle
+3. **Publishes** only the browser-ready `dist/cfde-wheel.umd.js`
+
+### Why This Works
+- cfde-wheel stays focused on npm/Node.js users
+- Separate repo can use whatever build tools needed (Rollup with advanced plugins)
+- Clear separation of concerns: source package vs. browser build
+- When cfde-wheel updates, rebuild and republish browser package
+
+### Architecture
+```
+cfde-wheel (maintainer's repo)
+  ├─ ESM/CJS builds for npm ✅
+  └─ Dependencies externalized ✅
+
+cfde-wheel-browser (your repo)  
+  ├─ package.json: depends on cfde-wheel
+  ├─ rollup.config.js: builds UMD with proper React global handling
+  ├─ dist/cfde-wheel.umd.js (the actual deliverable)
+  └─ README: browser usage instructions
 ```
 
-**Key Insight**: `noExternal: [/.*/]` overrides tsup's default behavior of externalizing `dependencies`, forcing it to bundle MUI and Emotion into the browser build.
+### Precedent
+React 19 removed UMD builds from the main package. The community created `umd-react` as a separate package to provide UMD builds. This validates the pattern of separate packages for different distribution formats when the main package doesn't support it.
 
-### Simplified HTML importmap
-Only provide React (removed MUI/Emotion since they're now bundled):
-
-```json
-{
-  "imports": {
-    "react": "https://esm.sh/react@19.1.0",
-    "react/jsx-runtime": "https://esm.sh/react@19.1.0/jsx-runtime",
-    "react-dom": "https://esm.sh/react-dom@19.1.0",
-    "react-dom/client": "https://esm.sh/react-dom@19.1.0/client"
-  }
-}
-```
-
-## Build Results
-- `index.browser.js`: **174KB** (was 6KB) - confirms MUI/Emotion are bundled
-- `index.js` (CJS): 6.7KB - unchanged
-- `index.mjs` (ESM): 5.9KB - unchanged
-- Git diff: +41 −8 lines
-
-## Current Status
-✅ Build successful - 174KB browser bundle created  
-✅ MUI and Emotion bundled into `index.browser.js`  
-✅ React externalized for importmap  
-❌ **New error**: `Cannot read properties of null (reading 'useState')`
-
-### Current Error
-```
-Uncaught TypeError: Cannot read properties of null (reading 'useState')
-    at W.useState (index.browser.js:1:9621)
-    at Dv (index.browser.js:74:76766)
-```
-
-**This is a React instance mismatch issue** - the bundled MUI/Emotion code is using a different React instance than what's provided by the importmap.
-
-## What Works
-- ✅ Storybook build (uses `index.js`/`index.mjs`)
-- ✅ NPM package for Node consumers
-- ❌ Browser ESM bundle with importmap
-
-## Key Learnings
-
-### tsup Default Behavior
-- By default, tsup externalizes packages in `dependencies` and `peerDependencies`
-- This is correct for npm libraries but wrong for standalone browser bundles
-- `noExternal: [/.*/]` forces bundling while respecting `external` array
-
-### Import Map Issues Encountered
-1. **Trailing slash validation**: Import map spec requires matching slashes
-2. **Query parameters**: Can't mix trailing slashes with query params
-3. **CDN reliability**: esm.run hangs, jsdelivr has CORS issues
-4. **Scoped imports**: Maintaining per-component imports is impractical
-
-## Next Steps for New Chat
-
-### Potential Solutions to Explore
-
-1. **React Version Compatibility**
-   - MUI 5.x doesn't fully support React 19
-   - Try downgrading to React 18 in both `package.json` and importmap
-   
-2. **Alternative Bundler**
-   - Try Rollup or esbuild with better peer dependency handling
-   - Vite library mode might handle this better
-   
-3. **Singleton React Pattern**
-   - Investigate bundler options to ensure single React instance
-   - webpack's `ModuleFederationPlugin` approach
-   
-4. **UMD Build Instead**
-   - Create a UMD build that expects global React
-   - Load React traditionally via `<script>` tag
-
-## Reference Files
-
-### Current package.json dependencies
-```json
-{
-  "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "@mui/material": "^5.17.1",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "tailwindcss": "^4.1.8",
-    "tsup": "^8.4.0",
-    "typescript": "^5.8.3"
-  }
-}
-```
-
-### GitHub PR
-https://github.com/wesleyboar/cfde-wheel/pull/4/files
-
-## Questions to Address in New Chat
-
-1. Why is the bundled MUI getting a null React instance when React is provided via importmap?
-2. Is there a way to ensure the bundled code uses the importmap React?
-3. Should we abandon ESM + importmap approach entirely and use UMD?
-4. Is React 19 compatibility with MUI 5 the real issue here?
+## Next Steps
+1. Create `cfde-wheel-browser` repository
+2. Set up Rollup config with plugins that can properly externalize React to globals
+3. Build and test UMD bundle
+4. Document browser usage in cfde-wheel-browser README
+5. Link to browser build from main cfde-wheel repo
