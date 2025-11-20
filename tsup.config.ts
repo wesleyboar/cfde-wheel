@@ -12,12 +12,11 @@ export default defineConfig([
   },
   {
     entry: ['src/index.tsx'],
-    format: ['esm', 'cjs'],
+    format: ['esm'],
     platform: 'browser',
     outDir: 'dist',
     outExtension: () => ({ js: '.browser.js' }),
-    external: ['react', 'react-dom'],
-    noExternal: [/@mui\/.*/, /@emotion\/.*/],
+    external: ['react', 'react-dom', /@mui\/.*/, /@emotion\/.*/],
     define: {
       'process.env.NODE_ENV': '"production"',
     },
